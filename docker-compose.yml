@@ -1,0 +1,30 @@
+version: '2'
+
+services:
+  rsyncd:
+    image: thann/rsync
+    build: .
+    restart: unless-stopped
+    volumes:
+      - rsyncd_data:/data
+    #environment:
+    #  USERNAME: user
+    #  PASSWORD: pass
+    #  VOLUME: data
+    #  ALLOW: 1.2.3.4
+    #ports:
+    #  - "8730:873"
+    #command: rsyncd -v
+
+  # Watch folder for changes and sync
+  #lsyncd:
+  #  image: thann/rsync
+  #  restart: unless-stopped
+  #  command: lsyncd -nodaemon -rsync /data rsync://user@rsyncd:873/data
+  #  volumes:
+  #    - ./myfolder:/data
+  #  environment:
+  #    RSYNC_PASSWORD: pass
+
+volumes:
+  rsyncd_data:
