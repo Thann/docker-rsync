@@ -7,22 +7,30 @@ services:
     restart: unless-stopped
     volumes:
       - rsyncd_data:/data
+      #- ./authorized_keys:/root/.ssh/authorized_keys
     #environment:
     #  USERNAME: user
     #  PASSWORD: pass
     #  VOLUME: data
     #  ALLOW: 1.2.3.4
+    #  AUTHORIZED_KEYS: ...
     #ports:
     #  - "8730:873"
-    #command: rsyncd -v
+    #  - "2222:22"
+    #command: /usr/bin/rsync --no-detach --daemon -v
+    #command: /usr/sbin/sshd -D -e
 
   # Watch folder for changes and sync
   #lsyncd:
   #  image: thann/rsync
   #  restart: unless-stopped
   #  command: lsyncd -nodaemon -rsync /data rsync://user@rsyncd:873/data
+  #  #command: lsyncd -nodaemon -log all -rsyncssh /data rsyncd /data
+  #  #command: lsyncd -log all -nodaemon /root/lsyncd.conf
   #  volumes:
   #    - ./myfolder:/data
+  #    #- ./lsyncd.conf:/root/lsyncd.conf
+  #    #- ./authorized_keys:/root/.ssh/id_ed25519.pub
   #  environment:
   #    RSYNC_PASSWORD: pass
 
